@@ -1,15 +1,24 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { ActionType } from '../constants/ActionType';
-
+import { CalcBrokerageDto } from '../constants/DealType';
 
 @ApiTags('BOARD')
 @Controller('brokerage')
 export class BrokerageQueryController {
-  constructor() {}
+	constructor() {}
 
-  @Get('')
-  async calcBrokerage(@Param() params:{[key:string]:ActionType}) {
-    return ``;
-  }
+	@Get('calc/brokerage')
+	async calcBrokerage(@Body() body: CalcBrokerageDto) {
+		// TODO : 중개수수료 계산하는 로직
+		const { price, dealType } = body;
+		return ``;
+	}
+
+	@Get('calc/apartment/:id')
+	async calcBrokerageByApartmentId(
+		@Param('id', ParseIntPipe) id: number,
+		@Body() data: CalcBrokerageDto,
+	) {
+		console.log(id);
+	}
 }
