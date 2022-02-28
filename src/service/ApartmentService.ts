@@ -17,4 +17,16 @@ export class ApartmentService {
 
 		return result.price;
 	}
+
+	async createApartment(data: ApartmentEntity) {
+		await this.apartmentRepository
+			.createQueryBuilder('apartment')
+			.insert()
+			.values({
+				name: data.name,
+				address: data.address,
+				price: data.price,
+			})
+			.execute();
+	}
 }

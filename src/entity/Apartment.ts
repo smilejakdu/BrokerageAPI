@@ -29,6 +29,6 @@ export class ApartmentEntity extends CoreEntity {
 		example: 100,
 		description: 'price',
 	})
-	@Column({ type: 'int', name: 'price', length: 150, nullable: false })
+	@Column({ type: 'int', name: 'price', nullable: false })
 	price: number;
 }
