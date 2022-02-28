@@ -13,6 +13,7 @@ export class BrokerageRule {
 		}
 		return Math.min(this.limitAmount, this.multiplyPercent(price));
 	}
+
 	multiplyPercent(price: number) {
 		return this.percentBrokerage / (100 * price);
 	}

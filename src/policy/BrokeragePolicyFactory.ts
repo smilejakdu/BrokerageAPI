@@ -5,8 +5,6 @@ import { HttpException } from '@nestjs/common';
 import { ErrorCode, StatusCode } from '../shared/errorCode/ErrorCode';
 
 export class BrokeragePolicyFactory {
-	constructor() {}
-
 	static BrokeragePolicy(dealType: DealType) {
 		switch (dealType) {
 			case DealType.PURCHASE:

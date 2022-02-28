@@ -2,27 +2,19 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ApartmentEntity } from '../entity/Apartment';
-import { ErrorCode } from '../shared/errorCode/ErrorCode';
-import { isNil } from 'lodash';
 
 @Injectable()
-export class UsersService {
+export class ApartmentService {
 	constructor(
 		@InjectRepository(ApartmentEntity) private apartmentRepository: Repository<ApartmentEntity>,
 	) {}
 
-	async getPrice(apartmentId: number) {
+	async getPrice(apartmentId: number): Promise<number> {
 		const result = await this.apartmentRepository
 			.createQueryBuilder('apartment')
 			.where({ id: apartmentId })
 			.getOne();
 
-		if (isNil(result)) {
-			return {
-				ok: false,
-				message: ErrorCode.ENTITY_NOT_FOUND,
-			};
-		}
-		return result;
+		return result.price;
 	}
 }
