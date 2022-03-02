@@ -2,7 +2,7 @@ import { DealType } from '../constants/DealType';
 import { PurchaseBrokeragePolicy } from './PurchaseBrokeragePolicy';
 import { RentBrokeragePolicy } from './RentBrokeragePolicy';
 import { HttpException } from '@nestjs/common';
-import { ErrorCode, StatusCode } from '../shared/errorCode/ErrorCode';
+import { ErrorCode, StatusCode } from '../shared/core/ErrorCode';
 
 export class BrokeragePolicyFactory {
 	static BrokeragePolicy(dealType: DealType) {
