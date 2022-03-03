@@ -11,9 +11,9 @@ export class BrokerageQueryController {
 	constructor(private readonly apartmentService: ApartmentService) {}
 
 	@Get('calc/brokerage')
-	async calcBrokerage(@Body() body: CalcBrokerageDto) {
+	async calcBrokerage(@Param() param: CalcBrokerageDto) {
 		// TODO : 중개수수료 계산하는 로직
-		const { price, dealType } = body;
+		const { price, dealType } = param;
 		const policy = await BrokeragePolicyFactory.BrokeragePolicy(dealType);
 		return policy.calculate(price);
 	}
@@ -21,10 +21,10 @@ export class BrokerageQueryController {
 	@Get('calc/apartment/:id')
 	async calcBrokerageByApartmentId(
 		@Param('id', ParseIntPipe) id: number,
-		@Body() data: CalcBrokerageDto,
+		@Param() data: CalcBrokerageDto,
 	) {
 		const policy = await BrokeragePolicyFactory.BrokeragePolicy(data.dealType);
-		const price = await this.apartmentService.getPrice(data.price);
+		const price = await this.apartmentService.getPrice(Number(data.price));
 		return policy.calculate(price);
 	}
 

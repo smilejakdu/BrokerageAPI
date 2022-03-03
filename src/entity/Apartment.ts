@@ -1,5 +1,5 @@
 import { Column, Entity } from 'typeorm';
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsNotEmpty, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 // Entity
 import { CoreEntity } from './CoreEntity';
@@ -24,7 +24,6 @@ export class ApartmentEntity extends CoreEntity {
 	@Column('varchar', { name: 'address', length: 150, nullable: false })
 	address: string;
 
-	@IsNumber()
 	@ApiProperty({
 		example: 100,
 		description: 'price',
