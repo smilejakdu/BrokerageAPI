@@ -1,6 +1,6 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Post, Query } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { CalcBrokerageDto } from '../constants/DealType';
+import { CalcBrokerageDto, DealTypeDto } from '../constants/DealType';
 import { BrokeragePolicyFactory } from '../policy/BrokeragePolicyFactory';
 import { ApartmentService } from '../service/ApartmentService';
 import { ApartmentEntity } from '../entity/Apartment';
@@ -18,13 +18,13 @@ export class BrokerageQueryController {
 		return policy.calculate(price);
 	}
 
-	@Get('calc/apartment/:id')
+	@Get('calc/:id/apartment')
 	async calcBrokerageByApartmentId(
-		@Param('id', ParseIntPipe) id: number,
-		@Param() data: CalcBrokerageDto,
+		@Param('id', ParseIntPipe) apartmentId: number,
+		@Query() data: DealTypeDto,
 	) {
 		const policy = await BrokeragePolicyFactory.BrokeragePolicy(data.dealType);
-		const price = await this.apartmentService.getPrice(Number(data.price));
+		const price = await this.apartmentService.getPrice(apartmentId);
 		return policy.calculate(price);
 	}
 
