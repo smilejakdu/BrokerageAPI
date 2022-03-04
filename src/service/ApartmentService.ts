@@ -1,9 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ApartmentEntity } from '../entity/Apartment';
 import { CoreResponse } from '../shared/core/CoreResponse';
-import { StatusCode } from '../shared/core/ErrorCode';
 
 @Injectable()
 export class ApartmentService {
@@ -32,24 +31,15 @@ export class ApartmentService {
 				})
 				.execute();
 			return {
-				statusCode: StatusCode.SUCCESS,
+				statusCode: HttpStatus.CREATED,
 				message: 'SUCCESS',
 			};
 		} catch (error) {
 			console.log(error);
 			return {
-				statusCode: StatusCode.BAD_REQUEST,
+				statusCode: HttpStatus.BAD_REQUEST,
 				message: 'BAD_REQUEST',
 			};
 		}
-		await this.apartmentRepository
-			.createQueryBuilder('apartment')
-			.insert()
-			.values({
-				name: data.name,
-				address: data.address,
-				price: data.price,
-			})
-			.execute();
 	}
 }

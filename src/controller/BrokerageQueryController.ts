@@ -51,10 +51,10 @@ export class BrokerageQueryController {
 
 	@Post()
 	async createBrokerage(@Body() data: ApartmentEntity): Promise<CoreResponse> {
-		await this.apartmentService.createApartment(data);
+		const responseCreatedApartment = await this.apartmentService.createApartment(data);
 		return {
-			statusCode: HttpStatus.CREATED,
-			message: 'SUCCESS',
+			statusCode: responseCreatedApartment.statusCode,
+			message: responseCreatedApartment.message,
 		};
 	}
 }
