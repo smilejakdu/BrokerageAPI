@@ -11,9 +11,10 @@ export class BrokerageQueryController {
 	constructor(private readonly apartmentService: ApartmentService) {}
 
 	@Get('calc/brokerage')
-	async calcBrokerage(@Param() param: CalcBrokerageDto) {
+	async calcBrokerage(@Query() query: CalcBrokerageDto) {
 		// TODO : 중개수수료 계산하는 로직
-		const { price, dealType } = param;
+		console.log(query);
+		const { price, dealType } = query;
 		const policy = await BrokeragePolicyFactory.BrokeragePolicy(dealType);
 		return policy.calculate(price);
 	}

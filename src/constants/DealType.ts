@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty } from 'class-validator';
 
 export enum DealType {
 	PURCHASE = 'PURCHASE',
@@ -13,7 +13,6 @@ export class DealTypeDto {
 }
 
 export class CalcBrokerageDto extends DealTypeDto {
-	@IsString()
 	@IsNotEmpty()
 	@ApiProperty({
 		example: 100,
