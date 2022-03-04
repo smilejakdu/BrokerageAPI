@@ -1,5 +1,5 @@
 export interface CoreResponse {
 	statusCode: number;
 	message: string;
-	data?: [];
+	data?: any;
 }

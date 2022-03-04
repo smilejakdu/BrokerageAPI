@@ -18,7 +18,7 @@ export class PurchaseBrokeragePolicy implements BrokeragePolicy {
 		return rule;
 	}
 
-	async calculate(price: number) {
+	async calculate(price: number): Promise<number> {
 		const rule: BrokerageRule = await this.createRule(price);
 		return rule.calculate(price);
 	}
