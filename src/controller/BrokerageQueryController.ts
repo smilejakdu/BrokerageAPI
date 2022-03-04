@@ -15,7 +15,7 @@ import { ApartmentService } from '../service/ApartmentService';
 import { ApartmentEntity } from '../entity/Apartment';
 import { CoreResponse } from '../shared/core/CoreResponse';
 
-@ApiTags('BOARD')
+@ApiTags('BROKERAGE')
 @Controller('brokerage')
 export class BrokerageQueryController {
 	constructor(private readonly apartmentService: ApartmentService) {}
