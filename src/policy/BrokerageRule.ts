@@ -19,4 +19,8 @@ export class BrokerageRule {
 	multiplyPercent(price: number) {
 		return this.percentBrokerage / (100 * price);
 	}
+
+	public getLessThan() {
+		return this.getLessThan();
+	}
 }
