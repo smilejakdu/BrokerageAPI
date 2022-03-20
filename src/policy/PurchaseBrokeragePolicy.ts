@@ -2,8 +2,8 @@ import { BrokeragePolicy } from './BrokeragePolicy';
 import { BrokerageRule } from './BrokerageRule';
 
 export class PurchaseBrokeragePolicy implements BrokeragePolicy {
-	private rule: BrokerageRule[] = [];
-	private getRules: BrokerageRule[] = [];
+	rule: BrokerageRule[] = [];
+	getRules: BrokerageRule[] = [];
 
 	constructor() {
 		this.rule.push(
